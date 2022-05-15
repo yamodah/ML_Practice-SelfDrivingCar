@@ -10,9 +10,9 @@ animate();
 
 function animate() {
   for (let i = 0; i < traffic.length; i++) {
-    traffic[i].update(road.borders);
+    traffic[i].update(road.borders,[]);
   }
-  car.update(road.borders);
+  car.update(road.borders, traffic);
   //move resize into animate functions like fillrect to clear the canvas
   canvas.height = innerHeight;
   ctx.save();
