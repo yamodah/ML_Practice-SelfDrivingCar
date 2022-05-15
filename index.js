@@ -8,6 +8,7 @@ animate()
 
 function animate(){
     car.update()
+    //move resize into animate functions like fillrect to clear the canvas
     canvas.height = innerHeight
     car.draw(ctx)
     requestAnimationFrame(animate)
