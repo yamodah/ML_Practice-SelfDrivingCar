@@ -32,7 +32,6 @@ function polysIntersect(poly1, poly2) {
       );
 
       if (touch) {
-        console.log("touch");
         return true;
       }
     }
