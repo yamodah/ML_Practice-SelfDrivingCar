@@ -25,13 +25,7 @@ class Visualizer {
             ctx.lineTo(Visualizer.#getNodeX(outputs,j, left,right), top)
 
             ctx.lineWidth = 2
-            const value = weights[i][j] 
-            const alpha = Math.abs(value)
-            const R = value<0?0:255
-            const G = R
-            const B = value>0?0:255
-
-            ctx.strokeStyle = "rgba("+R+","+G+","+B+","+alpha+")"
+            ctx.strokeStyle = getRBGA(weights[i][j])
             ctx.stroke()
         }
     }
@@ -40,7 +34,11 @@ class Visualizer {
       const x = Visualizer.#getNodeX(inputs,i,left,right)
       ctx.beginPath()
       ctx.arc(x,bottom,nodeRadius, 0, Math.PI*2)
-      ctx.fillStyle="white"
+      ctx.fillStyle="black"
+      ctx.fill()
+      ctx.beginPath()
+      ctx.arc(x,bottom,nodeRadius*0.6, 0, Math.PI*2)
+      ctx.fillStyle=getRBGA(inputs[i])
       ctx.fill()
     }
     //top nodes
@@ -48,14 +46,21 @@ class Visualizer {
       const x = Visualizer.#getNodeX(outputs,i,left,right)
       ctx.beginPath()
       ctx.arc(x,top,nodeRadius, 0, Math.PI*2)
-      ctx.fillStyle="white"
+      ctx.fillStyle="black"
+      ctx.fill()
+      ctx.beginPath()
+      ctx.arc(x,top,nodeRadius*0.6, 0, Math.PI*2)
+      ctx.fillStyle=getRBGA(outputs[i])
       ctx.fill()
 
       ctx.beginPath()
       ctx.lineWidth = 2
-      ctx.arc(x,top,nodeRadius,0,Math.PI*2)
+      ctx.arc(x,top,nodeRadius*0.8,0,Math.PI*2)
 
-      
+      ctx.strokeStyle = getRBGA(biases[i])
+      ctx.setLineDash([3,3])
+      ctx.stroke()
+      ctx.setLineDash([])
     }
   }
   static #getNodeX(nodes, index, left, right){
