@@ -1,11 +1,22 @@
 class Controls {
-  constructor() {
+  constructor(type) {
     this.forward = false;
     this.right = false;
     this.left = false;
     this.reverse = false;
 
-    this.#addKeyboardListeners();
+    switch (type) {
+      case "KEYS":
+        this.#addKeyboardListeners();
+        break;
+
+      case "DUMMY":
+        this.forward = true;
+        break;
+
+      default:
+        break;
+    }
   }
   #addKeyboardListeners() {
     document.onkeydown = (event) => {
@@ -26,7 +37,6 @@ class Controls {
         default:
           break;
       }
-
     };
     document.onkeyup = (event) => {
       switch (event.key) {
@@ -46,8 +56,6 @@ class Controls {
         default:
           break;
       }
-
-
     };
   }
 }
