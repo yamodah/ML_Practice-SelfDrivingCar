@@ -8,7 +8,7 @@ const car = new Car(road.getLaneCenter(1), 100, 30, 50);
 animate();
 
 function animate() {
-  car.update();
+  car.update(road.borders);
   //move resize into animate functions like fillrect to clear the canvas
   canvas.height = innerHeight;
   ctx.save();
