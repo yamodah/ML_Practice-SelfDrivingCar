@@ -16,6 +16,7 @@ class Visualizer {
           0,
           network.levels.length == 1 ? 0.5 : i / (network.levels.length - 1)
         );
+      ctx.setLineDash([7,3])
       Visualizer.drawLevel(
         ctx,
         network.levels[i],
@@ -44,7 +45,8 @@ class Visualizer {
         ctx.moveTo(Visualizer.#getNodeX(inputs, i, left, right), bottom);
         ctx.lineTo(Visualizer.#getNodeX(outputs, j, left, right), top);
 
-        ctx.lineWidth = 2;
+
+        ctx.lineWidth = inputs[i]*weights[i][j]
         ctx.strokeStyle = getRBGA(weights[i][j]);
         ctx.stroke();
       }
